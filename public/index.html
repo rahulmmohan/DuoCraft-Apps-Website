@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DuoCraft Apps - Crafting apps & games that make life easier & fun</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./favicon.png" />
+  <meta name="description"
+    content="DuoCraft Apps builds clean, useful mobile apps and playful games — focused on performance, delightful UX, and tiny moments of joy." />
+
+  <!-- Open Graph / Twitter Card (uses inline SVG data URI as image) -->
+  <!-- small inline SVG used as og:image so social previews get a branded image -->
+  <meta property="og:title" content="DuoCraft Apps — Crafting apps & games" />
+  <meta property="og:description"
+    content="We design clean, performant mobile apps and playful games that make life easier and fun." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="data:image/svg+xml;utf8,
+  <svg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'>
+    <rect width='100%' height='100%' fill='%23eef2ff'/>
+    <g transform='translate(80,90)'>
+      <rect width='440' height='440' rx='28' fill='none' stroke='%23345db6' stroke-width='6'/>
+      <text x='240' y='240' font-family='Segoe UI, Roboto, Arial, sans-serif' font-size='42' text-anchor='middle' fill='%23345db6'>DuoCraft Apps</text>
+    </g>
+  </svg>" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="DuoCraft Apps — Crafting apps & games" />
+  <meta name="twitter:description"
+    content="We design clean, performant mobile apps and playful games that make life easier and fun." />
+  <meta name="twitter:image" content="data:image/svg+xml;utf8,
+  <svg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'>
+    <rect width='100%' height='100%' fill='%23eef2ff'/>
+    <g transform='translate(80,90)'>
+      <rect width='440' height='440' rx='28' fill='none' stroke='%23345db6' stroke-width='6'/>
+      <text x='240' y='240' font-family='Segoe UI, Roboto, Arial, sans-serif' font-size='42' text-anchor='middle' fill='%23345db6'>DuoCraft Apps</text>
+    </g>
+  </svg>" />
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbrpN_vAZUozbdaic5p7-b9w2KTOZi6_c",
+      authDomain: "duocraftapps-b3536.firebaseapp.com",
+      projectId: "duocraftapps-b3536",
+      storageBucket: "duocraftapps-b3536.firebasestorage.app",
+      messagingSenderId: "139516756031",
+      appId: "1:139516756031:web:1e5d2f2c783360e30cb88a",
+      measurementId: "G-S853MYN837"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+
+  <!-- Tailwind (CDN) -->
+  <link rel="stylesheet" href="./css/tailwind.css" />
+  <style>
+    /* small customizations */
+    :root {
+      --accent: #345db6;
+      /* indigo/blue accent */
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    .accent-bg {
+      background: linear-gradient(90deg, #3b82f6, #345db6);
+    }
+
+    /* subtle border under sticky header when scrolled */
+    header.scrolled {
+      box-shadow: 0 6px 16px rgba(16, 24, 40, 0.06);
+      backdrop-filter: blur(6px);
+    }
+
+    /* focus ring for accessibility */
+    .focus-ring:focus {
+      outline: 3px solid rgba(59, 130, 246, 0.18);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+
+<body class="antialiased text-slate-900 bg-white">
+
+  <!-- STICKY NAVBAR -->
+  <header id="site-header" class="fixed top-0 left-0 right-0 z-40 bg-white/95">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="#hero" class="flex items-center gap-3">
+          <!-- Simple logotype -->
+          <div class="w-10 h-10 rounded-md flex items-center justify-center">
+            <img src="./assets/logo.png" />
+          </div>
+          <div class="leading-tight">
+            <div class="text-lg font-semibold">DuoCraft Apps</div>
+            <div class="text-xs text-slate-500 -mt-0.5">apps & games - simpler, happier</div>
+          </div>
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-700">
+          <a href="#about" class="hover:text-slate-900">About</a>
+          <a href="#apps" class="hover:text-slate-900">Apps</a>
+          <a href="#featured" class="hover:text-slate-900">Featured</a>
+          <a href="#tech" class="hover:text-slate-900">Tech</a>
+          <a href="#team" class="hover:text-slate-900">Team</a>
+          <a href="#contact" class="hover:text-slate-900">Contact</a>
+          <a href="#apps"
+            class="ml-4 inline-flex items-center gap-2 px-3 py-2 rounded-md bg-indigo-600 text-white text-sm hover:bg-indigo-700 focus-ring">Explore
+            Apps</a>
+        </nav>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu"
+            class="p-2 rounded-md focus-ring" title="Open menu">
+            <svg id="menu-open-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+            </svg>
+            <svg id="menu-close-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700 hidden"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden hidden border-t border-slate-100">
+      <div class="px-4 py-4 space-y-2">
+        <a href="#about" class="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50">About</a>
+        <a href="#apps" class="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50">Apps</a>
+        <a href="#featured" class="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50">Featured</a>
+        <a href="#tech" class="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50">Tech</a>
+        <a href="#team" class="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50">Team</a>
+        <a href="#contact" class="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50">Contact</a>
+        <a href="#apps" class="block mt-2 px-3 py-2 rounded-md bg-indigo-600 text-white text-center">Explore Apps</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="pt-20">
+    <!-- HERO -->
+    <section id="hero" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 leading-tight">
+            Crafting Apps & Games<br class="hidden sm:inline" /> that make life easier and fun
+          </h1>
+          <p class="mt-6 text-lg text-slate-600 max-w-xl">
+            DuoCraft Apps is a small creative studio building delightful, useful apps and playful games. We value
+            simplicity, performance, and a tiny dose of joy in every interaction.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#apps"
+              class="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-indigo-600 text-white font-medium hover:bg-indigo-700 focus-ring">Explore
+              Apps</a>
+            <a href="#contact"
+              class="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-slate-200 text-slate-700 hover:bg-slate-50 focus-ring">Contact
+              Us</a>
+          </div>
+
+          <p class="mt-6 text-sm text-slate-500">
+            <strong>Tech:</strong> React Native (TypeScript / JavaScript) • Android (Kotlin / Compose) • iOS (Swift /
+            SwiftUI) • Firebase • AI / ML
+          </p>
+        </div>
+
+        <!-- Minimal outlined illustration (inline SVG) -->
+        <div class="flex justify-center lg:justify-end">
+          <img src="./assets/image1.png" width="420" height="300" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-16 bg-slate-50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div class="order-2 lg:order-1">
+          <h2 class="text-3xl font-bold text-slate-900">About DuoCraft Apps</h2>
+          <p class="mt-4 text-slate-600">
+            DuoCraft Apps is a small studio passionate about creating well-crafted mobile experiences. Each product
+            begins with a real problem we want to solve and is polished for everyday use.
+          </p>
+          <ul class="mt-6 space-y-2 text-slate-600">
+            <li>• Human-first product design</li>
+            <li>• Performance-focused engineering</li>
+            <li>• Iterative releases and continuous learning</li>
+          </ul>
+        </div>
+
+        <div class="order-1 lg:order-2 flex justify-center lg:justify-end">
+          <img src="./assets/image2.png" width="420" height="300" />
+        </div>
+      </div>
+    </section>
+
+    <!-- OUR APPS -->
+    <section id="apps" class="py-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold">Our Apps</h2>
+        <p class="mt-2 text-slate-600">Small products aimed at solving everyday problems with delightful UX.</p>
+
+
+        <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+
+          <!-- AI Caption Buddy -->
+          <div
+            class="bg-white border rounded-2xl p-6 shadow-md hover:shadow-lg transition-transform hover:-translate-y-[2px] duration-200 max-w-sm mx-auto flex flex-col items-center text-center">
+            <img src="./assets/ai-caption-buddy.png" alt="AI Caption Buddy"
+              class="w-16 h-16 rounded-2xl border border-slate-200 shadow-sm mb-4" />
+            <h3 class="text-xl font-semibold text-slate-900">AI Caption Buddy</h3>
+            <p class="mt-2 text-slate-600 text-sm max-w-[280px]">
+              Create funny, creative captions and hashtags for your photos
+            </p>
+            <p class="mt-2 text-xs text-slate-500">Lifestyle • AI • Photography</p>
+            <ul class="mt-4 text-sm text-slate-700 text-left space-y-1.5">
+              <li>✨ AI-generated captions & memes</li>
+              <li>🚀 One-tap sharing on WhatsApp Status</li>
+              <li>🌐 Supports English & Malayalam</li>
+            </ul>
+            <a href="https://play.google.com/store/apps/details?id=com.aicaptionbuddy.app" target="_blank"
+              class="mt-6 inline-block px-6 py-2.5 rounded-lg font-medium text-white hover:shadow-md transition"
+              style="background: linear-gradient(90deg, #C63C8C, #E754A3);">
+              Try It Now
+            </a>
+          </div>
+
+          <!-- Clever Move -->
+          <div
+            class="bg-white border rounded-2xl p-6 shadow-md hover:shadow-lg transition-transform hover:-translate-y-[2px] duration-200 max-w-sm mx-auto flex flex-col items-center text-center">
+            <img src="./assets/clever-move.png" alt="Clever Move"
+              class="w-16 h-16 rounded-2xl border border-slate-200 shadow-sm mb-4" />
+            <h3 class="text-xl font-semibold text-slate-900">Clever Move</h3>
+            <p class="mt-2 text-slate-600 text-sm max-w-[280px]">
+              Jump tiles smartly, clear the board, and challenge your brain!
+            </p>
+            <p class="mt-2 text-xs text-slate-500">Game • Puzzle</p>
+            <ul class="mt-4 text-sm text-slate-700 text-left space-y-1.5">
+              <li>🎯 Simple to play, hard to master</li>
+              <li>🧩 Bright and minimal puzzle design</li>
+              <li>🔁 Endless replay value</li>
+            </ul>
+            <a href="https://play.google.com/store/apps/details?id=com.duocraftapps.clevermove" target="_blank"
+              class="mt-6 inline-block px-6 py-2.5 rounded-lg font-medium text-slate-900 hover:shadow-md transition"
+              style="background-color:#FACC15;">
+              Play Now
+            </a>
+          </div>
+
+          <!-- AI Meal Buddy -->
+          <div
+            class="bg-white border rounded-2xl p-6 shadow-md hover:shadow-lg transition-transform hover:-translate-y-[2px] duration-200 max-w-sm mx-auto flex flex-col items-center text-center">
+            <img src="./assets/ai-meals-buddy.png" alt="AI Meal Buddy"
+              class="w-16 h-16 rounded-2xl border border-slate-200 shadow-sm mb-4" />
+            <h3 class="text-xl font-semibold text-slate-900">AI Meal Buddy</h3>
+            <p class="mt-2 text-slate-600 text-sm max-w-[280px]">
+              Find what to cook with what you have — smart, fast, and fun.
+            </p>
+            <p class="mt-2 text-xs text-slate-500">Lifestyle • Food & Drinks • AI</p>
+            <ul class="mt-4 text-sm text-slate-700 text-left space-y-1.5">
+              <li>🥦 Ingredient-based meal ideas</li>
+              <li>🍳 Mood-based recipe suggestions</li>
+              <li>🤖 AI-powered quick recipes</li>
+            </ul>
+            <a href="https://play.google.com/store/apps/details?id=com.aimealbuddy.app" target="_blank"
+              class="mt-6 inline-block px-6 py-2.5 rounded-lg font-medium text-white hover:shadow-md transition"
+              style="background-color:#2D6A4F;">
+              Get the App
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED APP -->
+    <section id="featured" class="py-16 bg-slate-50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+
+        <!-- TEXT CONTENT -->
+        <div>
+          <h2 class="text-3xl font-bold text-slate-900">Featured — AI Caption Buddy</h2>
+          <p class="mt-4 text-slate-600">
+            Create funny, creative captions and hashtags for your photos — now in Malayalam too!
+            Powered by AI for instant captions, memes, and hashtag ideas that fit your mood and style.
+          </p>
+
+          <ul class="mt-4 text-slate-600 space-y-2">
+            <li>✨ AI-generated captions, memes, and hashtags</li>
+            <li>🚀 One-tap sharing on Instagram & WhatsApp Status</li>
+            <li>🌐 Supports English & Malayalam</li>
+          </ul>
+
+          <div class="mt-6 flex flex-wrap gap-3 items-center justify-center sm:justify-start">
+            <!-- Play Store -->
+            <a href="https://play.google.com/store/apps/details?id=com.aicaptionbuddy.app" target="_blank"
+              class="inline-flex items-center">
+              <img src="./assets/google-play.png" alt="Get it on Google Play"
+                class="h-16 w-auto object-contain align-middle" />
+            </a>
+
+            <!-- App Store (Coming Soon) -->
+            <button disabled
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-slate-200 text-slate-500 bg-white cursor-not-allowed h-11 align-middle">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 384 512" width="16" height="16">
+                <path
+                  d="M318.7 268.7c-.3-37.9 31.1-56.2 32.5-57-17.8-26-45.5-29.6-55.3-30-23.5-2.3-45.8 13.9-57.7 13.9-11.9 0-30.3-13.5-49.9-13.1-25.6.4-49.4 15-62.6 38.1-26.7 46.2-6.8 114.5 19.1 152 12.7 18.2 27.8 38.6 47.8 37.9 19.1-.8 26.3-12.2 49.5-12.2 23.1 0 29.6 12.2 49.9 11.9 20.6-.3 33.7-18.5 46.3-36.8 14.6-21.3 20.5-42 20.8-43.1-.5-.1-39.9-15.3-40.4-60.6zM253.1 144c10.4-12.7 17.3-30.3 15.4-48-14.9.6-32.8 9.9-43.4 22.5-9.5 11-17.9 28.6-15.7 45.8 16.6 1.3 33.3-8.5 43.7-20.3z" />
+              </svg>
+              App Store (Coming Soon)
+            </button>
+          </div>
+        </div>
+
+        <!-- IMAGE / PREVIEW -->
+        <div class="flex justify-center">
+          <div class="w-80 sm:w-96">
+            <div class="h-64  rounded-lg border border-slate-100 flex items-center justify-center">
+              <img src="./assets/featured.jpg" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </div>
+    </section>
+
+
+    <section id="tech" class="py-20 bg-white">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-slate-900">Tech & Approach</h2>
+        <p class="mt-4 text-slate-600 max-w-2xl mx-auto">
+          We combine pragmatic engineering with human-centered design to build apps that perform beautifully and feel
+          delightful to use.
+        </p>
+
+        <!-- Tech Grid -->
+        <div class="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
+          <!-- React Native -->
+          <div class="flex flex-col items-center text-center">
+            <img src="./assets/react-native.png" alt="React Native" class="w-10 h-10 mb-3 opacity-90" />
+            <p class="text-slate-700 font-medium">React Native</p>
+            <p class="text-xs text-slate-500">Cross-platform</p>
+          </div>
+
+          <!-- Kotlin -->
+          <div class="flex flex-col items-center text-center">
+            <img src="./assets/Kotlin.png" alt="Kotlin" class="w-10 h-10 mb-3 opacity-90" />
+            <p class="text-slate-700 font-medium">Kotlin</p>
+            <p class="text-xs text-slate-500">Android</p>
+          </div>
+
+          <!-- Swift -->
+          <div class="flex flex-col items-center text-center">
+            <img src="./assets/swift.png" alt="Swift" class="w-10 h-10 mb-3 opacity-90" />
+            <p class="text-slate-700 font-medium">Swift</p>
+            <p class="text-xs text-slate-500">iOS</p>
+          </div>
+
+          <!-- Firebase -->
+          <div class="flex flex-col items-center text-center">
+            <img src="./assets/firebase.png" alt="Firebase" class="w-10 h-10 mb-3 opacity-90" />
+            <p class="text-slate-700 font-medium">Firebase</p>
+            <p class="text-xs text-slate-500">Backend & Analytics</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team" class="py-20 bg-white border-t border-slate-100">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-slate-900">Team</h2>
+        <p class="mt-4 text-slate-600 max-w-2xl mx-auto">
+          A tiny team with big ideas — a husband & wife duo crafting thoughtful, high-performance apps with care,
+          creativity, and precision.
+        </p>
+
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-10">
+          <!-- Rahul -->
+          <div class="flex flex-col items-center text-center max-w-xs">
+            <div class="w-24 h-24 rounded-full overflow-hidden border border-slate-200 shadow-sm mb-3">
+              <img src="./assets/rahul.jpg" alt="Rahul Mohan" class="w-full h-full object-cover" />
+            </div>
+            <p class="font-semibold text-slate-900 text-lg">Rahul Mohan</p>
+            <p class="text-sm text-slate-500">Senior Staff Mobile Engineer</p>
+            <p class="mt-2 text-slate-600 text-sm leading-relaxed">
+              Scaled Simpl - a leading <em>Buy Now, Pay Later</em> platform - to millions of users while building
+              elegant, high-performance mobile experiences.
+              Expert in React Native, Android, iOS, UI/UX, and mobile architecture, including developing native SDKs for
+              Android and iOS.
+              Passionate about crafting smooth, fast, and delightful user experiences that blend thoughtful design with
+              solid engineering.
+            </p>
+          </div>
+
+          <!-- Angitha -->
+          <div class="flex flex-col items-center text-center max-w-xs">
+            <div class="w-24 h-24 rounded-full overflow-hidden border border-slate-200 shadow-sm mb-3">
+              <img src="./assets/angitha.jpg" alt="Angitha Das" class="w-full h-full object-cover" />
+            </div>
+            <p class="font-semibold text-slate-900 text-lg">Angitha Das</p>
+            <p class="text-sm text-slate-500">Android Tech Lead</p>
+            <p class="mt-2 text-slate-600 text-sm leading-relaxed">
+              Leads the Android OTT mobile app with a focus on performance, accessibility, and design quality.
+              Expert in building seamless Android and media experiences across phones and TVs, bringing content to life
+              with robust engineering and intuitive interfaces.
+              Specializes in Android, Kotlin, and Jetpack Compose — passionate about creating smooth, engaging
+              experiences that feel natural on every screen.
+            </p>
+          </div>
+        </div>
+
+        <p class="mt-10 text-sm text-slate-500 italic">
+          Together, we design, code, test, and launch — one small, delightful app at a time.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <!-- CONTACT -->
+    <section id="contact" class="py-16">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center">Contact</h2>
+        <p class="mt-2 text-center text-slate-600">
+          Have an idea or feedback? Drop us a quick message — we’d love to hear from you.
+        </p>
+
+        <form id="contactForm" class="mt-8 bg-white border rounded-2xl p-6 shadow-sm">
+          <label class="block">
+            <span class="text-sm text-slate-700">Your name</span>
+            <input id="name" name="name" type="text" required
+              class="mt-1 block w-full rounded-md border border-slate-200 p-2 focus-ring" placeholder="Rahul" />
+          </label>
+
+
+          <label class="block mt-4">
+            <span class="text-sm text-slate-700">Message</span>
+            <textarea id="message" name="message" rows="5" required
+              class="mt-1 block w-full rounded-md border border-slate-200 p-2 focus-ring"
+              placeholder="Tell us about your idea..."></textarea>
+          </label>
+
+          <div class="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <!-- Send Button -->
+            <button type="submit"
+              class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-indigo-600 text-white hover:bg-indigo-700 transition">
+              Send message
+            </button>
+
+            <!-- Direct Email Text -->
+            <div class="text-sm text-slate-500 text-center sm:text-right">
+              Or email us directly at
+              <a href="mailto:duocraftapps@gmail.com" class="text-indigo-600 hover:underline">
+                duocraftapps@gmail.com
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+    <!-- FOOTER -->
+    <!-- FOOTER -->
+    <footer class="border-t bg-slate-50">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+
+        <!-- Left: Copyright -->
+        <div class="text-sm text-slate-600 text-center md:text-left">
+          © <span id="year"></span> DuoCraft Apps · Built with ❤️
+        </div>
+
+        <!-- Right: Links + LinkedIn -->
+        <div class="flex flex-col sm:flex-row items-center gap-4">
+
+          <!-- LinkedIn -->
+          <div class="flex items-center gap-3">
+            <a href="https://www.linkedin.com/company/duocraftapps" target="_blank"
+              class="text-slate-600 hover:text-indigo-600" aria-label="LinkedIn">
+              <img src="./assets/linkedin.png" width="20" height="20" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+      </script>
+    </footer>
+  </main>
+
+
+  <!-- SCRIPTS: mobile menu toggle, header scroll state, smooth scrolling, year -->
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = encodeURIComponent(document.getElementById("name").value);
+      const email = encodeURIComponent(document.getElementById("email").value);
+      const message = encodeURIComponent(document.getElementById("message").value);
+
+      const mailTo = "duocraftapps@gmail.com";
+      const subject = encodeURIComponent(`New message from ${name}`);
+      const body = `Hi DuoCraft Apps,%0D%0A%0D%0A${message}%0D%0A%0D%0AFrom: ${name}%0D%0AEmail: ${email}`;
+
+      window.location.href = `mailto:${mailTo}?subject=${subject}&body=${body}`;
+    });
+    (function () {
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const openIcon = document.getElementById('menu-open-icon');
+      const closeIcon = document.getElementById('menu-close-icon');
+      mobileBtn && mobileBtn.addEventListener('click', function () {
+        const expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', String(!expanded));
+        mobileMenu.classList.toggle('hidden');
+        openIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+      });
+
+      // header shadow on scroll
+      const header = document.getElementById('site-header');
+      const addHeaderShadow = () => {
+        if (window.scrollY > 6) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      };
+      addHeaderShadow();
+      window.addEventListener('scroll', addHeaderShadow);
+
+      // smooth scrolling for internal links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // close mobile menu after click
+            if (!mobileMenu.classList.contains('hidden')) {
+              mobileMenu.classList.add('hidden');
+              openIcon.classList.remove('hidden');
+              closeIcon.classList.add('hidden');
+              mobileBtn.setAttribute('aria-expanded', 'false');
+            }
+          }
+        });
+      });
+
+      // set current year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+
+    })();
+
+  </script>
+</body>
+
+</html>
