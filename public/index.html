@@ -491,7 +491,7 @@
 
           <!-- LinkedIn -->
           <div class="flex items-center gap-3">
-            <a href="https://www.linkedin.com/company/duocraftapps" target="_blank"
+            <a href="https://www.linkedin.com/company/duocraft-apps" target="_blank"
               class="text-slate-600 hover:text-indigo-600" aria-label="LinkedIn">
               <img src="./assets/linkedin.png" width="20" height="20" />
             </a>
@@ -512,12 +512,11 @@
       e.preventDefault();
 
       const name = encodeURIComponent(document.getElementById("name").value);
-      const email = encodeURIComponent(document.getElementById("email").value);
       const message = encodeURIComponent(document.getElementById("message").value);
 
       const mailTo = "duocraftapps@gmail.com";
       const subject = encodeURIComponent(`New message from ${name}`);
-      const body = `Hi DuoCraft Apps,%0D%0A%0D%0A${message}%0D%0A%0D%0AFrom: ${name}%0D%0AEmail: ${email}`;
+      const body = `Hi DuoCraft Apps,%0D%0A%0D%0A${message}%0D%0A%0D%0AFrom: ${name}`;
 
       window.location.href = `mailto:${mailTo}?subject=${subject}&body=${body}`;
     });
